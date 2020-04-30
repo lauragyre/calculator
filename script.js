@@ -11,17 +11,11 @@ let numB = [];
 let done = false;
 let displayNum = []
 
-//let setValue = function (num) {
-  //  keyValue = num;
-  //  displayNum.push(keyValue);
-    //if (parseInt(displayNum.join("")) > 99999999) {display.innerHTML = 'ERROR';}
-    //else {display.innerHTML = number(displayNum).toPrecision(0,8);}
-//}
 
 let add = (a, b) => {
     return a+b;
-    
 }
+
 let subtract = (a, b) => {
     return a-b;
 }
@@ -43,12 +37,9 @@ let operate = (operator, a, b) => {
     numA = [answer];
     console.log('numA =' + numA);
     numB = [];
-    
 
     if (answer > 99999999) {display.innerHTML = 'ERROR';}
     else {display.innerHTML = parseFloat(answer.toPrecision(8));}
-
-    operation = null;
     done = true;
     return answer;
 }
@@ -80,29 +71,28 @@ keypad.addEventListener('click', () => {
             }
             }
     }}
-    //if (event.target.id == 0) {setValue(0);}
-    //else if (event.target.id == 1) {setValue(1);}
-    //else if (event.target.id == 2) {setValue(2);}
-    //else if (event.target.id == 3) {setValue(3);}
-    //else if (event.target.id == 4) {setValue(4);}
-    //else if (event.target.id == 5) {setValue(5);}
-    //else if (event.target.id == 6) {setValue(6);}
-    //else if (event.target.id == 7) {setValue(7);}
-    //else if (event.target.id == 8) {setValue(8);}
-    //else if (event.target.id == 9) {setValue(9);}
-    else if (event.target.id == '+') {operation = '+'; done = false;}
-    else if (event.target.id == '-') {operation = '-'; done = false;}
-    else if (event.target.id == '*') {operation = '*'; done = false;}
-    else if (event.target.id == '/') {operation = '/'; done = false;}
+
+    else if (event.target.id == '+') {
+        if (operation) {operate(operation, parseInt(numA.join("")), parseInt(numB.join("")));}        
+        operation = '+'; done = false;}
+    else if (event.target.id == '-') {
+        if (operation) {operate(operation, parseInt(numA.join("")), parseInt(numB.join("")));}   
+        operation = '-'; done = false;}
+    else if (event.target.id == '*') {
+        if (operation) {operate(operation, parseInt(numA.join("")), parseInt(numB.join("")));}   
+        operation = '*'; done = false;}
+    else if (event.target.id == '/') {
+        if (operation) {operate(operation, parseInt(numA.join("")), parseInt(numB.join("")));}   
+        operation = '/'; done = false;}
     else if (event.target.id == '=') {console.log(numA + "    " + operation + "      " + numB);
         if (numA && numB && operation) { 
             console.log('parseInt(numA.join("")) =' + parseInt(numA.join(""))); 
             operate(operation, parseInt(numA.join("")), parseInt(numB.join("")));
+            operation = null;
         } else {display.innerHTML = "ERROR";}
     }
     }
-     
-
+    
 )
 
 clear.onclick = () => {
