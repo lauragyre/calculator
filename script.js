@@ -57,7 +57,9 @@ keypad.addEventListener('click', () => {
     for (let i = 0; i < buttons.length; i++) {
         
        buttons[i].style.opacity = '100%'; 
+       
     }
+    keypad.style.opacity = '100%';
     event.target.style.opacity = '75%';
     if (event.target.id >= 0 && event.target.id <= 9) {
         if (done == true) {
@@ -65,14 +67,17 @@ keypad.addEventListener('click', () => {
         } else {
         //setValue(event.target.id);
         if (operation) { numB.push(parseInt(event.target.id)); 
-            console.log('numA' + numA + 'numB' + numB);
-            display.innerHTML = numB;
+            if (parseInt(numB.join("")) > 99999999) {display.innerHTML = "ERROR";}
+            else {
+            display.innerHTML = numB.join("");
+            }
 
         }
             else { numA.push(parseInt(event.target.id));
-                console.log('numA' + numA + 'numB' + numB);
-                display.innerHTML = numA;
-
+                if (parseInt(numA.join("")) > 99999999) {display.innerHTML = "ERROR";}
+                else {console.log('numA' + numA + 'numB' + numB);
+                display.innerHTML = numA.join("");
+            }
             }
     }}
     //if (event.target.id == 0) {setValue(0);}
